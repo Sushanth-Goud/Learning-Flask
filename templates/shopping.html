@@ -9,9 +9,9 @@
 	{% endif %}
 	<h1>BOOKS</h1>
 	{% for book in data %}
-		<h3>{{book.title}}</h3>
-		<form  method='post'>
-			<input name="title" value="{{book.title}}" type="hidden">
+		<h3>{{book["title"]}}</h3>
+		<form method='POST'>
+			<input name="title" value="{{book['title']}}" type="hidden">
 			<button type='submit'> Add to cart </button>
 		</form>
 		<br>
