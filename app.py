@@ -1,4 +1,4 @@
-from os import rename
+import os
 from flask import Flask,render_template,request,redirect,session
 from flask_session import Session
 import sqlite3
@@ -7,6 +7,7 @@ app=Flask(__name__)
 
 app.config["SESSION_PERMANENT"]=False
 app.config["SESSION_TYPE"]="filesystem"
+app.config["SESSION_FILE_DIR"] = "/tmp/flask_session"
 Session(app)
 
 SPORTS=['Football','Badminton','TT']
@@ -86,5 +87,9 @@ def cart():
 def logout():
     session.clear()
     return redirect("/login")
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
 
 
