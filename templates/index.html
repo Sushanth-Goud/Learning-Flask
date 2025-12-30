@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+	{% block body %}
+	<h1>
+		Regstration Form
+	</h1>
+	<br>
+	<form action="/success" method='POST'>
+	<input autocomplete="off" autofocus name=name type='text' placeholder="NAME">
+	<br>
+	<select name=sport>
+		<option value='' disabled selected="">Sports</option>
+		{% for sport in sports %}
+			<option value="{{sport}}">{{sport}}</option>
+		{% endfor %}
+	</select>
+	<br>
+	<button type='submit'>Submit</button>
+	</form>
+	<br>
+	<form action='/registrants' method='GET'>
+		<button type='submit'>Registrants</button>
+	</form>
+	<br>
+	<a href="/login">login page</a>
+	{% endblock %}
