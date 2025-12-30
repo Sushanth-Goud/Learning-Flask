@@ -28,7 +28,7 @@ def init_db():
 	conn.execute("Create table if not exists books(id integer primary key autoincrement, title text not null)")
 	check=conn.execute('Select count(*) from books').fetchone()
 	if check[0]==0:
-		conn.execute("Insert into books(title) values (?)",('The Hobbit','1984','To Kill a Mockingbird'))
+		conn.execute("Insert into books(title) values (?,?,?)",('The Hobbit','1984','To Kill a Mockingbird'))
 	conn.close()
 
 init_db()
