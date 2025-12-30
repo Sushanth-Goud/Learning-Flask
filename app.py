@@ -18,6 +18,19 @@ def get_db_connection(x):
 	conn.row_factory=sqlite3.Row
 	return conn
 
+def init_db():
+	conn=get_db_connection("registrants.db")
+	conn.execute("create table if not exists registrants(name text not null, sport text not null)")
+	conn.commit
+	conn.close()
+
+	conn=get_db_connection("books.db")
+	conn.execute("Create table if not exists books(id integer primary key autoincrement, title text not null)")
+	check=conn.execute('Select count(*) from books').fetchone()
+	if check[0]==0:
+		conn.execute("Insert into books(title) values (?)",('The Hobbit','1984','To Kill a Mockingbird'))
+	conn.close()
+
 @app.route('/')
 def index():
 	return render_template('index.html',sports=SPORTS)
