@@ -31,6 +31,8 @@ def init_db():
 		conn.execute("Insert into books(title) values (?)",('The Hobbit','1984','To Kill a Mockingbird'))
 	conn.close()
 
+init_db()
+
 @app.route('/')
 def index():
 	return render_template('index.html',sports=SPORTS)
