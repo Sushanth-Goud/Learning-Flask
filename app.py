@@ -19,16 +19,17 @@ def get_db_connection(x):
 	return conn
 
 def init_db():
-	conn=get_db_connection("registrants.db")
+	conn=get_db_connection("registrations.db")
 	conn.execute("create table if not exists registrants(name text not null, sport text not null)")
-	conn.commit
+	conn.commit()
 	conn.close()
 
 	conn=get_db_connection("books.db")
 	conn.execute("Create table if not exists books(id integer primary key autoincrement, title text not null)")
+	conn.commit()
 	check=conn.execute('Select count(*) from books').fetchone()
 	if check[0]==0:
-		conn.execute("Insert into books(title) values (?,?,?)",('The Hobbit','1984','To Kill a Mockingbird'))
+		conn.execute("INSERT INTO books (title) VALUES('The Hobbit'),('1984'),('To Kill a Mockingbird'),('Pride and Prejudice'),('The Catcher in the Rye')")
 	conn.close()
 
 init_db()
